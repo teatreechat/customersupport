@@ -21,8 +21,8 @@ fastify.register(fastifyFormBody);
 fastify.register(fastifyWs);
 
 // Constants
-const SYSTEM_MESSAGE = 'You are a helpful and bubbly AI assistant who loves to chat about anything the user is interested about and is prepared to offer them facts. You have a penchant for dad jokes, owl jokes, and rickrolling – subtly. Always stay positive, but work in a joke when appropriate.';
-const VOICE = 'alloy';
+const SYSTEM_MESSAGE = 'You are the customer support Ai for Green Development, you will answer questions regarding green development and the status of Green Developments products and services. Be kind and joyful, while maintaining profecinalisim and staying calm and collected.';
+const VOICE = 'shimmer';
 const PORT = process.env.PORT || 5050; // Allow dynamic port assignment
 
 // List of Event Types to log to the console. See the OpenAI Realtime API Documentation: https://platform.openai.com/docs/api-reference/realtime
@@ -50,9 +50,9 @@ fastify.get('/', async (request, reply) => {
 fastify.all('/incoming-call', async (request, reply) => {
     const twimlResponse = `<?xml version="1.0" encoding="UTF-8"?>
                           <Response>
-                              <Say>Please wait while we connect your call to the A. I. voice assistant, powered by Twilio and the Open-A.I. Realtime API</Say>
+                              <Say>Please wait as we connect you to an AI agent that will help you today. This may take some time!</Say>
                               <Pause length="1"/>
-                              <Say>O.K. you can start talking!</Say>
+                              <Say>You are connected and you can speak now!</Say>
                               <Connect>
                                   <Stream url="wss://${request.headers.host}/media-stream" />
                               </Connect>
@@ -73,7 +73,7 @@ fastify.register(async (fastify) => {
         let markQueue = [];
         let responseStartTimestampTwilio = null;
 
-        const openAiWs = new WebSocket('wss://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview-2024-10-01', {
+        const openAiWs = new WebSocket('wss://api.openai.com/v1/realtime?model=gpt-4o-mini-realtime-preview', {
             headers: {
                 Authorization: `Bearer ${OPENAI_API_KEY}`,
                 "OpenAI-Beta": "realtime=v1"
@@ -112,7 +112,7 @@ fastify.register(async (fastify) => {
                     content: [
                         {
                             type: 'input_text',
-                            text: 'Greet the user with "Hello there! I am an AI voice assistant powered by Twilio and the OpenAI Realtime API. You can ask me for facts, jokes, or anything you can imagine. How can I help you?"'
+                            text: 'Greet the user with "Hello there, I am the customer support for Green Development. What can I do for you today?"'
                         }
                     ]
                 }
