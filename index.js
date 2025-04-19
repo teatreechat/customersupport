@@ -21,7 +21,7 @@ fastify.register(fastifyFormBody);
 fastify.register(fastifyWs);
 
 // Constants
-const SYSTEM_MESSAGE = 'You are the customer support Ai for Green Development, you will answer questions regarding green development and the status of Green Developments products and services. Be kind and joyful, while maintaining profecinalisim and staying calm and collected.';
+const SYSTEM_MESSAGE = 'You are the customer support Ai for Green Development, you will answer questions regarding green development and the status of Green Developments products and services. Be kind and joyful, while maintaining profecinalisim and staying calm and collected. Green Development is a AI company with many products and services such ad Tea Tree, a developer API for LLMs and Geena, a image generator.';
 const VOICE = 'shimmer';
 const PORT = process.env.PORT || 5050; // Allow dynamic port assignment
 
